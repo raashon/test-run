@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Important Question 👀</title>
+
+<style>
+    body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffccd5, #ffe6f0);
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        margin-top: 100px;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+        color: #ff1e56;
+        text-shadow: 0 0 15px rgba(255,0,100,0.8);
+    }
+
+    button {
+        padding: 15px 25px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin: 10px;
+        transition: 0.3s;
+        background-color: #ff1e56;
+        color: white;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    img {
+        width: 250px;
+        border-radius: 15px;
+        margin: 20px 0;
+    }
+
+    .dramatic-name {
+        font-size: 60px;
+        font-weight: bold;
+        color: #ff004c;
+        animation: zoomIn 1.5s ease forwards;
+    }
+
+    @keyframes zoomIn {
+        from { transform: scale(0.1); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+    }
+
+    .love-letter {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 25px;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        font-size: 18px;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeIn 3s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+
+    .intro-image {
+    width: 195px;   /* change this number to adjust size */
+    border-radius: 20px;
+    margin: 20px 0;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container" id="introPage">
+    <h1>Hey princess 😊<br><br>I have a reallllyyyyyy important question...</h1>
+    <img src="Pic1.jpeg" alt="Princess" class="intro-image">
+    <br>
+    <button onclick="startQuestion()">I'm listening 👀</button>
+</div>
+
+<div class="container" id="mainPage" style="display:none;">
+    <h1 id="question"></h1>
+
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="Cute Love Gif">
+
+    <br>
+
+    <button id="yesBtn">Yes 💘</button>
+    <button id="noBtn">No 🙈</button>
+</div>
+
+<script>
+const herName = "Princess"; // <-- PUT HER NAME HERE
+
+const loveLetter = `
+Hey ${herName},
+Over the past few months, we've had our ups and our downs(sometimes more downs than ups😂). However, if there's one thing that has never changed is my love for you. The same way I love you through the good, I love you through the bad. You're my favourite girl in this whole wide world, and for that I'm happy to not just call you my girlfriend. You're also 
+My Bestfriend
+My Partner
+My Princess
+My Supporter(I've noticed your recent efforts and I appreciate you for that)
+My Rock(You're also the one who makes me as hard as a rock lol😂)
+
+And now, my VALENTINE❤️
+
+So today, tomorrow, and every day after…
+I choose you princess ❤️
+
+Forever your boy,
+Raashon 💌
+`;
+
+function startQuestion() {
+    document.getElementById("introPage").style.display = "none";
+    document.getElementById("mainPage").style.display = "block";
+    typeEffect();
+}
+
+const question = document.getElementById("question");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+let size = 18;
+let text = `Will You Be My Valentine? 💖`;
+let i = 0;
+let messageIndex = 0;
+
+const messages = [
+    `Ooops, wrong answer 😅`,
+    `Are you sureeeeeee? 🤔`,
+    `Stop playing girl 😂`,
+    `You plan to make me cry? 🥲`,
+    `You know you love me 😌`,
+    `AZARA LIANA HUSBANDS 😡`,
+    `Imma tell your mum if you don't press yes 😒`,
+    `Just say you hate me😒`,
+    `Pretty Pleaseeeee 🥹`,
+    `LAST CHANCE⌛`,
+    `LAST CHANCE(frl this time)`,
+    `Just say you like girls🏳️‍🌈`,
+    `Imma tell both your mum and your dad if you press no🧍🏾‍♂️`,
+    `You bored?🤣`,
+    `JUST PRESS YES‼️`,
+];
+
+function typeEffect() {
+    if (i < text.length) {
+        question.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 60);
+    }
+}
+
+noBtn.addEventListener("click", function() {
+    size += 10;
+    yesBtn.style.fontSize = size + "px";
+
+    alert(messages[messageIndex]);
+
+    messageIndex++;
+
+    // Stop at last message instead of crashing
+    if (messageIndex >= messages.length) {
+        messageIndex = messages.length - 1;
+    }
+});
+
+yesBtn.addEventListener("click", function() {
+    document.body.innerHTML = `
+        <div class="container">
+            <div class="dramatic-name">${herName} SAID YES!!! 💕</div>
+
+            <img src="Pic4.jpeg" class="final-pic">
+            <img src="Pic5.jpeg" class="final-pic">
+            <img src="Pic3.jpeg" class="final-pic">
+
+            <div class="love-letter">${loveLetter.replace(/\n/g, "<br><br>")}</div>
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
